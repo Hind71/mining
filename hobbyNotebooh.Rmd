@@ -1,1 +1,90 @@
+getwd()
+setwd("C:/Users/hihuj/Desktop/miningOLD")
+dataset = read.csv('hobbyperdectionOLD.csv')
+names(dataset)
+
+max(dataset$Time_art)
+quantile(dataset$Sepal.Length, c(0.1, 0.3, 0.65))
+
+OutAge = outlier(dataset$Time_sprt, logical =TRUE)
+sum(OutAge)
+Find_outlier = which(OutAge ==TRUE, arr.ind = TRUE)
+OutAge
+Find_outlier
+
+boxplot(dataset$Grasp_pow)
+```{r}
+boxplot(Time_art ~ Predicted.Hobby, data = dataset)
+
+```
+
+
+with(dataset, plot(Grasp_pow, Time_sprt, col = Predicted.Hobby, pch = as.numeric(Predicted.Hobby)))
+
+boxplot(Time_sprt ~ Predicted.Hobby, data = dataset)
+summary(dataset$Grasp_pow)
+boxplot.stats(dataset$Grasp_pow)$out
+boxplot(dataset$Grasp_pow)
+#outlier selotion
+boxplot(dataset$Grasp_pow, range = 10)
+
+summary(dataset$Time_art)
+boxplot(dataset$Time_art)
+boxplot.stats(dataset$Time_art)$out
+max(dataset$Time_art)
+
+
+summary(dataset$Time_sprt)
+boxplot.stats(dataset$Time_sprt)$out
+boxplot(dataset$Time_sprt)
+
+str(dataset)
+attributes(dataset)
+
+hist(dataset$Grasp_pow) #done
+
+```{r}
+dataset$Time_sprt %>% density() %>% plot(main='Density of Time_sprt')
+
+```
+
+```{r}
+dataset2 <- dataset %>% sample_n(50)
+dataset2$Predicted.Hobby %>% table() %>% pie() # plot pie chart without percentages
+# add percentages
+tab <- dataset2$Predicted.Hobby %>% table()
+precentages <- tab %>% prop.table() %>% round(3) * 100 
+txt <- paste0(names(tab), '\n', precentages, '%') # text on chart
+pie(tab, labels=txt) # plot pie chart
+```
+dataset2 <- dataset %>% sample_n(50)
+dataset2$Predicted.Hobby %>% table() %>% pie() # plot pie chart without percentages
+# add percentages
+tab <- dataset2$Predicted.Hobby %>% table()
+precentages <- tab %>% prop.table() %>% round(3) * 100 
+txt <- paste0(names(tab), '\n', precentages, '%') # text on chart
+pie(tab, labels=txt) # plot pie chart
+------------------------------------------------------------------------------------------
+dataset2 <- dataset %>% sample_n(50)
+dataset2$Won_arts %>% table() %>% pie() # plot pie chart without percentages
+# add percentages
+tab <- dataset2$Won_arts %>% table()
+precentages <- tab %>% prop.table() %>% round(3) * 100 
+txt <- paste0(names(tab), '\n', precentages, '%') # text on chart
+pie(tab, labels=txt) # plot pie chart
+------------------------------------------------------------------------------
+
+
+#Bar Chart
+dataset2$Predicted.Hobby %>% table() %>% barplot() #plot bar chart
+# add colors and percentages
+bb <- dataset2$Predicted.Hobby %>% table() %>% barplot(axisnames=F, main='Predicted.Hobby', ylab='Frequency',col=c('pink', 'lightblue', 'lightgreen'))
+text(bb, tab/2.5, labels=txt, cex=1)
+
+-----------------------------------------------------------------------------
+with(dataset, plot(Grasp_pow, Time_sprt, col = Species, pch = as.numeric(Predicted.Hobby)))
+------------------------------------------------------------------------------
+pairs(dataset)
+
+
 
